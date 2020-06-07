@@ -5,7 +5,7 @@ import config from "./config";
 
 const Login = () => {
   useEffect(() => {
-    const { pkce, issuer, clientId, redirectUri, scopes } = config;
+    const { clientId, issuer, redirectUri, scopes, pkce } = config;
     const widget = new OktaSignIn({
       /**
        * Note: when using the Sign-In Widget for an OIDC flow, it still
@@ -25,7 +25,8 @@ const Login = () => {
         pkce,
         issuer,
         display: "page",
-        scopes,
+        scope,
+        responseMode: "query",
       },
     });
 

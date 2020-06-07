@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, useHistory, BrowserRouter } from "react-router-dom";
 import { Security, SecureRoute, LoginCallback } from "@okta/okta-react";
+import dotenv from "dotenv";
+import config from "./config";
 import { Home } from "./Home";
 import { Login } from "./Login";
 import { Profile } from "./Profile";
-import config from "./config";
-import dotenv from "dotenv";
 
 const HasAccessToRouter = () => {
   const history = useHistory();
