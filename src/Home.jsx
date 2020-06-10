@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
+import axios from 'axios';
 
 const Home = () => {
   const { authState, authService } = useOktaAuth();
@@ -31,6 +32,9 @@ const Home = () => {
 
   const button = authState.isAuthenticated ? logoutButton : loginButton;
 
+  axios.get('http://localhost:8080/test')
+      .then(response => console.log(response));
+      
   return (
     <div>
       <Link to="/">Home</Link>
