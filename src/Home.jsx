@@ -12,7 +12,7 @@ const Home = () => {
   const logoutButton = (
     <button
       onClick={() => {
-        authService.logout();
+        authService.logout('/');
       }}
     >
       Logout
@@ -22,7 +22,7 @@ const Home = () => {
   const loginButton = (
     <button
       onClick={() => {
-        authService.login();
+        authService.login('/');
       }}
     >
       Login
