@@ -16,6 +16,15 @@ const Home = () => {
       authService.getUser().then((info) => {
         setUserInfo(info);
       });
+      console.log("@@@@@@@@@@@@   ID TOKEN  @@@@@@@@@@@@@");
+      console.log(authState.idToken);
+      console.log("@@@@@@@@@@@@   ACCESS TOKEN  @@@@@@@@@@@@@");
+      console.log(authState.accessToken);
+      const accessToken = authState.accessToken;
+
+      axios.get("http://localhost:8080/test", {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
     }
   }, [authState, authService]); // Update if authState changes
 
@@ -45,9 +54,9 @@ const Home = () => {
 
   const button = authState.isAuthenticated ? logoutButton : loginButton;
 
-  axios
-    .get("http://localhost:8080/test")
-    .then((response) => console.log(response));
+  // axios
+  //   .get("http://localhost:8080/test")
+  //   .then((response) => console.log(response));
 
   return (
     <div>
