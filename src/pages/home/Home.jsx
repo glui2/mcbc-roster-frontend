@@ -4,6 +4,12 @@ import { Link } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
 import axios from "axios";
 
+const getUserInfo = async (accessToken) => {
+  return await axios.get("http://localhost:8080/test", {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+};
+
 const Home = () => {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
@@ -13,18 +19,16 @@ const Home = () => {
       // When user isn't authenticated, forget any user info
       setUserInfo(null);
     } else {
-      authService.getUser().then((info) => {
-        setUserInfo(info);
-      });
-      console.log("@@@@@@@@@@@@   ID TOKEN  @@@@@@@@@@@@@");
-      console.log(authState.idToken);
-      console.log("@@@@@@@@@@@@   ACCESS TOKEN  @@@@@@@@@@@@@");
-      console.log(authState.accessToken);
       const accessToken = authState.accessToken;
 
-      axios.get("http://localhost:8080/test", {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      });
+      const response = axios
+        .get("http://localhost:8080/test", {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        })
+        .then((response) => {
+          console.log(response);
+          setUserInfo(response.data);
+        });
     }
   }, [authState, authService]); // Update if authState changes
 
@@ -65,7 +69,7 @@ const Home = () => {
       <Link to="/profile">Profile</Link>
       <br />
       {button}
-      {userInfo ? <p>{userInfo.name}</p> : <p>No user</p>}
+      {userInfo ? <p>{userInfo}</p> : <p>No user</p>}
     </div>
   );
 };
