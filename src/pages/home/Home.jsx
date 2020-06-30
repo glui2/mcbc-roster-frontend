@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 
 const getUserInfo = async (accessToken) => {
@@ -69,7 +71,19 @@ const Home = () => {
       <Link to="/profile">Profile</Link>
       <br />
       {button}
-      {userInfo ? <p>{userInfo}</p> : <p>No user</p>}
+      <div className="fullname">
+        <Box>
+          {userInfo ? (
+            <Typography color="primary" variant="h2">
+              {userInfo}
+            </Typography>
+          ) : (
+            <Typography color="primary" variant="h2">
+              Unknown User
+            </Typography>
+          )}
+        </Box>
+      </div>
     </div>
   );
 };
