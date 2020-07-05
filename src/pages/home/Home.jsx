@@ -90,15 +90,15 @@ const Home = () => {
         >
           {firstName ? (
             <div>
-              <Typography align="center" color="primary" variant="h2">
+              <Typography align="center" color="primary" variant="h3">
                 {firstName}
               </Typography>
-              <Typography align="center" color="primary" variant="h2">
+              <Typography align="center" color="primary" variant="h3">
                 {lastName}
               </Typography>
             </div>
           ) : (
-            <Typography color="primary" variant="h2">
+            <Typography align="center" color="primary" variant="h3">
               Unknown User
             </Typography>
           )}
