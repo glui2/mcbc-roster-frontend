@@ -5,6 +5,7 @@ import { useOktaAuth } from "@okta/okta-react";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
+import "./Home.css";
 
 const getUserInfo = async (accessToken) => {
   return await axios.get("http://localhost:8080/test", {
@@ -14,12 +15,15 @@ const getUserInfo = async (accessToken) => {
 
 const Home = () => {
   const { authState, authService } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState(null);
+  // const [userInfo, setUserInfo] = useState(null);
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
 
   useEffect(() => {
     if (!authState.isAuthenticated) {
       // When user isn't authenticated, forget any user info
-      setUserInfo(null);
+      setFirstName(null);
+      setLastName(null);
     } else {
       const accessToken = authState.accessToken;
 
@@ -29,7 +33,9 @@ const Home = () => {
         })
         .then((response) => {
           console.log(response);
-          setUserInfo(response.data);
+          const fullName = response.data.split(" ", 2);
+          setFirstName(fullName[0]);
+          setLastName(fullName[1]);
         });
     }
   }, [authState, authService]); // Update if authState changes
@@ -72,11 +78,25 @@ const Home = () => {
       <br />
       {button}
       <div className="fullname">
-        <Box>
-          {userInfo ? (
-            <Typography color="primary" variant="h2">
-              {userInfo}
-            </Typography>
+        <Box
+          minWidth="300px"
+          width="25%"
+          display="flex"
+          justifyContent="center"
+          m="auto"
+          p="32px" // add to constants file
+          border={2}
+          borderColor="primary.main"
+        >
+          {firstName ? (
+            <div>
+              <Typography align="center" color="primary" variant="h2">
+                {firstName}
+              </Typography>
+              <Typography align="center" color="primary" variant="h2">
+                {lastName}
+              </Typography>
+            </div>
           ) : (
             <Typography color="primary" variant="h2">
               Unknown User
