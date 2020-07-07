@@ -2,7 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
 import axios from "axios";
+import "./Home.css";
 
 const getUserInfo = async (accessToken) => {
   return await axios.get("http://localhost:8080/test", {
@@ -12,12 +15,15 @@ const getUserInfo = async (accessToken) => {
 
 const Home = () => {
   const { authState, authService } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState(null);
+  // const [userInfo, setUserInfo] = useState(null);
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
 
   useEffect(() => {
     if (!authState.isAuthenticated) {
       // When user isn't authenticated, forget any user info
-      setUserInfo(null);
+      setFirstName(null);
+      setLastName(null);
     } else {
       const accessToken = authState.accessToken;
 
@@ -27,7 +33,9 @@ const Home = () => {
         })
         .then((response) => {
           console.log(response);
-          setUserInfo(response.data);
+          const fullName = response.data.split(" ", 2);
+          setFirstName(fullName[0]);
+          setLastName(fullName[1]);
         });
     }
   }, [authState, authService]); // Update if authState changes
@@ -69,7 +77,33 @@ const Home = () => {
       <Link to="/profile">Profile</Link>
       <br />
       {button}
-      {userInfo ? <p>{userInfo}</p> : <p>No user</p>}
+      <div className="fullname">
+        <Box
+          minWidth="300px"
+          width="25%"
+          display="flex"
+          justifyContent="center"
+          m="auto"
+          p="32px" // add to constants file
+          border={2}
+          borderColor="primary.main"
+        >
+          {firstName ? (
+            <div>
+              <Typography align="center" color="primary" variant="h3">
+                {firstName}
+              </Typography>
+              <Typography align="center" color="primary" variant="h3">
+                {lastName}
+              </Typography>
+            </div>
+          ) : (
+            <Typography align="center" color="primary" variant="h3">
+              Unknown User
+            </Typography>
+          )}
+        </Box>
+      </div>
     </div>
   );
 };
