@@ -1,0 +1,105 @@
+import React from "react";
+import { useState } from "react";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import Drawer from "@material-ui/core/Drawer";
+import List from "@material-ui/core/List";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import { spacing } from "@material-ui/system";
+import Box from "@material-ui/core/Box";
+import "./Header.css";
+
+const Header = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [logout, setLogoutOpen] = useState(false);
+  const theme = useTheme();
+
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
+  };
+
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
+  };
+
+  return (
+    <div>
+      <AppBar
+        position="static"
+        style={{
+          boxShadow: "none",
+          padding: "0px",
+          backgroundColor: "#fff",
+          color: "#e53232",
+        }}
+      >
+        <Toolbar>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={handleDrawerOpen}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        variant="persistent"
+        anchor="left"
+        open={drawerOpen}
+        classes={{ root: "sideBar" }}
+      >
+        <div>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === "ltr" ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
+          </IconButton>
+        </div>
+        <List>
+          {[
+            {
+              label: "HOME",
+            },
+            {
+              label: "PROFILE",
+            },
+            {
+              label: "AVAILABILITIES",
+            },
+            {
+              label: "ROSTER",
+            },
+            {
+              label: "MEMBERS",
+            },
+          ].map((button, index) => (
+            <Box m={1}>
+              <Button
+                variant="outlined"
+                color="primary"
+                fullWidth
+                classes={{ root: "sideBarButton" }}
+              >
+                {button.label}
+              </Button>
+            </Box>
+          ))}
+        </List>
+      </Drawer>
+    </div>
+  );
+};
+
+export { Header };

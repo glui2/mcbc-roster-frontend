@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import config from "./config";
 import { Home } from "./pages/home/Home";
 import { Profile } from "./pages/profile/Profile";
+import { Header } from "./pages/header/Header";
 
 const HasAccessToRouter = () => {
   return (
@@ -14,6 +15,7 @@ const HasAccessToRouter = () => {
       redirectUri={window.location.origin + "/implicit/callback"}
       pkce={true}
     >
+      <Header></Header>
       <Route path="/" exact={true} component={Home} />
       <Route path="/implicit/callback" component={LoginCallback} />
       <SecureRoute path="/profile" component={Profile} />
