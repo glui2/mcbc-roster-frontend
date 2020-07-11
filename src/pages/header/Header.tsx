@@ -38,13 +38,12 @@ const Header = () => {
           boxShadow: "none",
           padding: "0px",
           backgroundColor: "#fff",
-          color: "#e53232",
         }}
       >
         <Toolbar>
           <IconButton
             edge="start"
-            color="inherit"
+            color="primary"
             aria-label="menu"
             onClick={handleDrawerOpen}
           >
