@@ -16,6 +16,22 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: ["Archivo Narrow", "Roboto", "sans-serif"].join(","),
   },
+  overrides: {
+    MuiButton: {
+      outlinedPrimary: {
+        border: "solid",
+        borderRadius: "100px",
+        borderWidth: "2px",
+      },
+    },
+    MuiDrawer: {
+      paperAnchorDockedLeft: {
+        width: "15vw",
+        minWidth: "200px",
+        maxWidth: "500px",
+      },
+    },
+  },
 });
 
 export default theme;

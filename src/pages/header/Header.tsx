@@ -15,11 +15,9 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { spacing } from "@material-ui/system";
 import Box from "@material-ui/core/Box";
-import "./Header.css";
 
-const Header = () => {
+export const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [logout, setLogoutOpen] = useState(false);
   const theme = useTheme();
 
   const handleDrawerClose = () => {
@@ -51,12 +49,7 @@ const Header = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant="persistent"
-        anchor="left"
-        open={drawerOpen}
-        classes={{ root: "sideBar" }}
-      >
+      <Drawer variant="persistent" anchor="left" open={drawerOpen}>
         <div>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
@@ -84,13 +77,8 @@ const Header = () => {
               label: "MEMBERS",
             },
           ].map((button, index) => (
-            <Box m={1}>
-              <Button
-                variant="outlined"
-                color="primary"
-                fullWidth
-                classes={{ root: "sideBarButton" }}
-              >
+            <Box m={2}>
+              <Button variant="outlined" color="primary" fullWidth>
                 {button.label}
               </Button>
             </Box>
@@ -100,5 +88,3 @@ const Header = () => {
     </div>
   );
 };
-
-export { Header };
