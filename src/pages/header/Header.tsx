@@ -1,9 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -11,9 +10,6 @@ import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import { spacing } from "@material-ui/system";
 import Box from "@material-ui/core/Box";
 
 export const Header = () => {
@@ -49,7 +45,12 @@ export const Header = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer variant="persistent" anchor="left" open={drawerOpen}>
+      <Drawer
+        data-testid="MenuDrawer"
+        variant="persistent"
+        anchor="left"
+        open={drawerOpen}
+      >
         <div>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
@@ -77,7 +78,7 @@ export const Header = () => {
               label: "MEMBERS",
             },
           ].map((button, index) => (
-            <Box m={2}>
+            <Box m={2} key={index}>
               <Button variant="outlined" color="primary" fullWidth>
                 {button.label}
               </Button>
