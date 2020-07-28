@@ -1,17 +1,23 @@
 import React from "react";
-import { render, within } from "@testing-library/react";
+import { render, within, fireEvent } from "@testing-library/react";
 import { Header } from "./Header";
 
 describe("Header", () => {});
-it("drawer should not be visible", () => {
+it("menu options should only be visible when drawer is expanded", () => {
   const { getByTestId } = render(<Header />);
 
-  const drawer = getByTestId("MenuDrawer");
-  expect(within(drawer)).not.toBeVisible();
+  expect(getByTestId("HOME")).not.toBeVisible();
+  expect(getByTestId("PROFILE")).not.toBeVisible();
+  expect(getByTestId("AVAILABILITIES")).not.toBeVisible();
+  expect(getByTestId("ROSTER")).not.toBeVisible();
+  expect(getByTestId("MEMBERS")).not.toBeVisible();
+
+  fireEvent.click(getByTestId("menuIcon"));
+
+  expect(getByTestId("HOME")).toBeVisible();
+  expect(getByTestId("PROFILE")).toBeVisible();
+  expect(getByTestId("AVAILABILITIES")).toBeVisible();
+  expect(getByTestId("ROSTER")).toBeVisible();
+  expect(getByTestId("MEMBERS")).toBeVisible();
 });
 
-// describe("")
-// it("drawer button should open drawer when clicked", () => {
-//     const { getBy } = render(<Header/>);
-
-// });

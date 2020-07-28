@@ -40,13 +40,13 @@ export const Header = () => {
             color="primary"
             aria-label="menu"
             onClick={handleDrawerOpen}
+            data-testid="menuIcon"
           >
             <MenuIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
-        data-testid="MenuDrawer"
         variant="persistent"
         anchor="left"
         open={drawerOpen}
@@ -78,7 +78,7 @@ export const Header = () => {
               label: "MEMBERS",
             },
           ].map((button, index) => (
-            <Box m={2} key={index}>
+            <Box m={2} key={index} data-testid={button.label}>
               <Button variant="outlined" color="primary" fullWidth>
                 {button.label}
               </Button>
