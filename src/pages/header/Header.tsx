@@ -64,9 +64,11 @@ export const Header = () => {
           {[
             {
               label: "HOME",
+              path: "/"
             },
             {
               label: "PROFILE",
+              path: "/profile"
             },
             {
               label: "AVAILABILITIES",
@@ -79,7 +81,7 @@ export const Header = () => {
             },
           ].map((button, index) => (
             <Box m={2} key={index}>
-              <Button variant="outlined" color="primary" fullWidth>
+              <Button variant="outlined" color="primary" fullWidth href={button.path}>
                 {button.label}
               </Button>
             </Box>

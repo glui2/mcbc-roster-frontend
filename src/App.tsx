@@ -15,7 +15,7 @@ const HasAccessToRouter = () => {
       redirectUri={window.location.origin + "/implicit/callback"}
       pkce={true}
     >
-      <Header></Header>
+      <Header />
       <Route path="/" exact={true} component={Home} />
       <Route path="/implicit/callback" component={LoginCallback} />
       <SecureRoute path="/profile" component={Profile} />

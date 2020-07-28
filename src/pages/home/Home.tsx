@@ -7,12 +7,6 @@ import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 import "./Home.css";
 
-const getUserInfo = async (accessToken) => {
-  return await axios.get("http://localhost:8080/test", {
-    headers: { Authorization: `Bearer ${accessToken}` },
-  });
-};
-
 const Home = () => {
   const { authState, authService } = useOktaAuth();
   // const [userInfo, setUserInfo] = useState(null);
