@@ -4,20 +4,20 @@ import { Header } from "./Header";
 
 describe("Header", () => {});
 it("menu options should only be visible when drawer is expanded", () => {
-  const { getByTestId } = render(<Header />);
+  const { getByTestId, getByText } = render(<Header />);
 
-  expect(getByTestId("HOME")).not.toBeVisible();
-  expect(getByTestId("PROFILE")).not.toBeVisible();
-  expect(getByTestId("AVAILABILITIES")).not.toBeVisible();
-  expect(getByTestId("ROSTER")).not.toBeVisible();
-  expect(getByTestId("MEMBERS")).not.toBeVisible();
+  expect(getByText("HOME")).not.toBeVisible();
+  expect(getByText("PROFILE")).not.toBeVisible();
+  expect(getByText("AVAILABILITIES")).not.toBeVisible();
+  expect(getByText("ROSTER")).not.toBeVisible();
+  expect(getByText("MEMBERS")).not.toBeVisible();
 
   fireEvent.click(getByTestId("menuIcon"));
 
-  expect(getByTestId("HOME")).toBeVisible();
-  expect(getByTestId("PROFILE")).toBeVisible();
-  expect(getByTestId("AVAILABILITIES")).toBeVisible();
-  expect(getByTestId("ROSTER")).toBeVisible();
-  expect(getByTestId("MEMBERS")).toBeVisible();
+  expect(getByText("HOME")).toBeVisible();
+  expect(getByText("PROFILE")).toBeVisible();
+  expect(getByText("AVAILABILITIES")).toBeVisible();
+  expect(getByText("ROSTER")).toBeVisible();
+  expect(getByText("MEMBERS")).toBeVisible();
 });
 

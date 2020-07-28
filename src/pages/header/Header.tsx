@@ -78,7 +78,7 @@ export const Header = () => {
               label: "MEMBERS",
             },
           ].map((button, index) => (
-            <Box m={2} key={index} data-testid={button.label}>
+            <Box m={2} key={index}>
               <Button variant="outlined" color="primary" fullWidth>
                 {button.label}
               </Button>
