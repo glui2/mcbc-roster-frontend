@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Grid, Typography } from "@material-ui/core"
+import { Box, Grid, Typography, Button } from "@material-ui/core"
 import ProfileIcon from "../../shared-components/icons/ProfileIcon";
 import "./Name.css";
 import theme from "../../theme";
@@ -27,6 +27,7 @@ export const ProfileName = () => {
                         </Grid>
                     </Grid>
                 </Box>
+                <Button className="button">Hello</Button>
             </Grid>
         </Grid>
     )

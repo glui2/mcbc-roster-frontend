@@ -6,3 +6,10 @@
 .nameBorder {
     min-width: 459px;
 }
+
+.button {
+    border: solid;
+    border-radius: 100px;
+    border-width: 2px;
+  }
+  
