@@ -39,7 +39,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ### `git push heroku <branch name>`
 
-This command directly pushes and deploys changes to the corresponding branch in Heroku.
+This command directly pushes and deploys changes to the corresponding branch in Heroku!
 
 ## Learn More
 
