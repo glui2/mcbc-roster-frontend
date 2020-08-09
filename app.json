@@ -4,7 +4,7 @@
       "url": "heroku/nodejs"
     },
     {
-      "url": "mars/create-react-app-buildpack"
+      "url": "mars/create-react-app"
     }
   ]
 }
