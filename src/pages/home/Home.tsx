@@ -104,13 +104,25 @@ const Home = () => {
         <Typography align="center" color="primary" variant="h5">
           I AM SERVING IN:
         </Typography>
-        <Grid container spacing={2}>
-          <MinistryIcon ministry="Announcements"></MinistryIcon>
-          <MinistryIcon ministry="AV"></MinistryIcon>
-          <MinistryIcon ministry="Bible"></MinistryIcon>
-          <MinistryIcon ministry="Communion"></MinistryIcon>
-          <MinistryIcon ministry="Offering"></MinistryIcon>
-          <MinistryIcon ministry="Worship"></MinistryIcon>
+        <Grid container justify="center" alignItems="flex-end" spacing={5}>
+          <Grid item>
+            <MinistryIcon ministry="Announcements"></MinistryIcon>
+          </Grid>
+          <Grid item>
+            <MinistryIcon ministry="AV"></MinistryIcon>
+          </Grid>
+          <Grid item>
+            <MinistryIcon ministry="Bible"></MinistryIcon>
+          </Grid>
+          <Grid item>
+            <MinistryIcon ministry="Communion"></MinistryIcon>
+          </Grid>
+          <Grid item>
+            <MinistryIcon ministry="Offering"></MinistryIcon>
+          </Grid>
+          <Grid item>
+            <MinistryIcon ministry="Worship"></MinistryIcon>
+          </Grid>
         </Grid>
       </div>
     </div>
