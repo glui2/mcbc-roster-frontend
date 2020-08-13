@@ -5,6 +5,7 @@ import { useOktaAuth } from "@okta/okta-react";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
+import { MinistryIcon } from "../../shared-components/ministryIcon/ministryIcon";
 import "./Home.css";
 
 const Home = () => {
@@ -97,6 +98,12 @@ const Home = () => {
             </Typography>
           )}
         </Box>
+      </div>
+      <div className="ministries">
+        <Typography align="center" color="primary" variant="h5">
+          I AM SERVING IN:
+        </Typography>
+        <MinistryIcon ministry="Announcements" showText="hide"></MinistryIcon>
       </div>
     </div>
   );
