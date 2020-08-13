@@ -73,37 +73,39 @@ const Home = () => {
       <Link to="/profile">Profile</Link>
       <br />
       {button}
-      <div className="fullname">
-        <Box
-          minWidth="300px"
-          width="25%"
-          display="flex"
-          justifyContent="center"
-          m="auto"
-          p="32px" // add to constants file
-          border={2}
-          borderColor="primary.main"
-        >
-          {firstName ? (
-            <div>
+      <Grid container direction="column" spacing={10}>
+        <Grid item>
+          <Box
+            minWidth="300px"
+            width="25%"
+            display="flex"
+            justifyContent="center"
+            m="auto"
+            p="32px" // add to constants file
+            border={2}
+            borderColor="primary.main"
+          >
+            {firstName ? (
+              <div>
+                <Typography align="center" color="primary" variant="h3">
+                  {firstName}
+                </Typography>
+                <Typography align="center" color="primary" variant="h3">
+                  {lastName}
+                </Typography>
+              </div>
+            ) : (
               <Typography align="center" color="primary" variant="h3">
-                {firstName}
+                Unknown User
               </Typography>
-              <Typography align="center" color="primary" variant="h3">
-                {lastName}
-              </Typography>
-            </div>
-          ) : (
-            <Typography align="center" color="primary" variant="h3">
-              Unknown User
-            </Typography>
-          )}
-        </Box>
-      </div>
-      <div className="ministries">
-        <Typography align="center" color="primary" variant="h5">
-          I AM SERVING IN:
-        </Typography>
+            )}
+          </Box>
+        </Grid>
+        <Grid item>
+          <Typography align="center" color="primary" variant="h5">
+            I AM SERVING IN:
+          </Typography>
+        </Grid>
         <Grid container justify="center" alignItems="flex-end" spacing={5}>
           <Grid item>
             <MinistryIcon ministry="Announcements"></MinistryIcon>
@@ -124,7 +126,7 @@ const Home = () => {
             <MinistryIcon ministry="Worship"></MinistryIcon>
           </Grid>
         </Grid>
-      </div>
+      </Grid>
     </div>
   );
 };
