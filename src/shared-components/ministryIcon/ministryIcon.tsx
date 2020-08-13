@@ -50,7 +50,7 @@ const MinistryIcon = (props: any) => {
         spacing={2}
       >
         <Grid item>
-          <img src={iconImage}></img>
+          <img className="iconImage" src={iconImage}></img>
         </Grid>
         <Grid item>
           <Typography color="primary" variant="body1">
