@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
+import Grid, { GridSpacing } from "@material-ui/core/Grid";
 import axios from "axios";
 import { MinistryIcon } from "../../shared-components/ministryIcon/ministryIcon";
 import "./Home.css";
@@ -103,7 +104,14 @@ const Home = () => {
         <Typography align="center" color="primary" variant="h5">
           I AM SERVING IN:
         </Typography>
-        <MinistryIcon ministry="Announcements" showText="hide"></MinistryIcon>
+        <Grid container spacing={2}>
+          <MinistryIcon ministry="Announcements"></MinistryIcon>
+          <MinistryIcon ministry="AV"></MinistryIcon>
+          <MinistryIcon ministry="Bible"></MinistryIcon>
+          <MinistryIcon ministry="Communion"></MinistryIcon>
+          <MinistryIcon ministry="Offering"></MinistryIcon>
+          <MinistryIcon ministry="Worship"></MinistryIcon>
+        </Grid>
       </div>
     </div>
   );

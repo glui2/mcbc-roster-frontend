@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
+import Grid, { GridSpacing } from "@material-ui/core/Grid";
 import AnnounceIcon from "./AnnouncementsIcon.png";
 import AVIcon from "./AVIcon.png";
 import BibleIcon from "./BibleReadingIcon.png";
@@ -42,10 +42,22 @@ const MinistryIcon = (props: any) => {
 
   return (
     <div className="ministryIcon">
-      <img src={iconImage}></img>
-      <Typography align="center" color="primary" variant="h5">
-        {labelText}
-      </Typography>
+      <Grid
+        container
+        justify="center"
+        alignItems="center"
+        direction="column"
+        spacing={2}
+      >
+        <Grid item>
+          <img src={iconImage}></img>
+        </Grid>
+        <Grid item>
+          <Typography color="primary" variant="body1">
+            {labelText}
+          </Typography>
+        </Grid>
+      </Grid>
     </div>
   );
 };
