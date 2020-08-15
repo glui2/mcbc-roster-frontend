@@ -1,6 +1,8 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Grid, { GridSpacing } from "@material-ui/core/Grid";
+import { display } from "@material-ui/system";
+import Box from "@material-ui/core/Box";
 import AnnounceIcon from "./AnnouncementsIcon.png";
 import AVIcon from "./AVIcon.png";
 import BibleIcon from "./BibleReadingIcon.png";
@@ -11,6 +13,7 @@ import "./ministryIcon.css";
 
 const MinistryIcon = (props: any) => {
   var iconImage = "";
+  const labelDisplay = props.labelVisibility ? props.labelVisibility : "inline";
   var labelText = "";
 
   switch (props.ministry) {
@@ -53,9 +56,11 @@ const MinistryIcon = (props: any) => {
           <img className="iconImage" src={iconImage}></img>
         </Grid>
         <Grid item>
-          <Typography color="primary" variant="body1">
-            {labelText}
-          </Typography>
+          <Box display={labelDisplay}>
+            <Typography color="primary" variant="body1">
+              {labelText}
+            </Typography>
+          </Box>
         </Grid>
       </Grid>
     </div>
