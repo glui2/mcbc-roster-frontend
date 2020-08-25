@@ -1,17 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import Grid, { GridSpacing } from "@material-ui/core/Grid";
+import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import { MinistryIcon } from "../../shared-components/ministryIcon/ministryIcon";
 import "./Home.css";
 
 const Home = () => {
   const { authState, authService } = useOktaAuth();
-  // const [userInfo, setUserInfo] = useState(null);
   const [firstName, setFirstName] = useState<string | null>(null);
   const [lastName, setLastName] = useState<string | null>(null);
   const [ministries, setMinistries] = useState<MinistryInterface[] | null>(
@@ -30,23 +28,14 @@ const Home = () => {
         .get("http://localhost:8080/profile/1", {
           headers: { Authorization: `Bearer ${accessToken}` },
         })
-        // .get("https://5efb3c5e80d8170016f7621c.mockapi.io/api/volunteer/1")
         .then((response) => {
           console.log(response);
           setFirstName(response.data.firstName);
           setLastName(response.data.lastName);
           setMinistries(response.data.ministries);
-          // setMinistries([response.data.ministries[0]]);
         });
     }
   }, [authState, authService]); // Update if authState changes
-
-  // this.setState(prevState => ({
-  //   arrayvar: [...prevState.arrayvar, newelement]
-  // }))
-  // const prevState = ministries
-  // const newState = ministries.map((ministry) => prevState.push(ministry))
-  // setMinistries(newState)
 
   if (authState.isPending) {
     return <div>Loading...</div>;
@@ -79,17 +68,13 @@ const Home = () => {
 
   const displayVolunteerMinistry = (ministry: MinistryInterface) => {
     return (
-      <Grid item>
+      <Grid item key={ministry.id}>
         <MinistryIcon ministry={ministry.name}></MinistryIcon>
       </Grid>
     );
   };
 
   const button = authState.isAuthenticated ? logoutButton : loginButton;
-
-  // axios
-  //   .get("http://localhost:8080/test")
-  //   .then((response) => console.log(response));
 
   return (
     <div>
@@ -127,33 +112,13 @@ const Home = () => {
             I AM SERVING IN:
           </Typography>
         </Grid>
-        <Grid container justify="center" alignItems="flex-end" spacing={5}>
-          {ministries ? (
-            ministries.forEach((ministry) => {
-              displayVolunteerMinistry(ministry);
-            })
-          ) : (
-            <div>No ministries to display</div>
-          )}
-          {/* <Grid item>
-            <MinistryIcon ministry="Announcements"></MinistryIcon>
-          </Grid> */}
-          {/* <Grid item>
-            <MinistryIcon ministry="AV"></MinistryIcon>
+        {ministries ? (
+          <Grid container justify="center" alignItems="flex-end" spacing={5}>
+            {ministries.map((ministry) => displayVolunteerMinistry(ministry))}
           </Grid>
-          <Grid item>
-            <MinistryIcon ministry="Bible"></MinistryIcon>
-          </Grid>
-          <Grid item>
-            <MinistryIcon ministry="Communion"></MinistryIcon>
-          </Grid>
-          <Grid item>
-            <MinistryIcon ministry="Offering"></MinistryIcon>
-          </Grid>
-          <Grid item>
-            <MinistryIcon ministry="Worship"></MinistryIcon>
-          </Grid> */}
-        </Grid>
+        ) : (
+          <div>No ministries to display</div>
+        )}
       </Grid>
     </div>
   );
