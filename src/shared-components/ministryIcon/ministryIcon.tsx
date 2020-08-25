@@ -25,7 +25,7 @@ const MinistryIcon = (props: any) => {
       iconImage = AVIcon;
       labelText = "AV";
       break;
-    case "Bible":
+    case "BibleReading":
       iconImage = BibleIcon;
       labelText = "Bible Reading";
       break;
