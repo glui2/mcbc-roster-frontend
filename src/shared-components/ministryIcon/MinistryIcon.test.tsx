@@ -3,17 +3,6 @@ import { render, within, fireEvent } from "@testing-library/react";
 import { MinistryIcon } from "./MinistryIcon";
 
 describe("MinistryIcon", () => {
-  it("should display label if labelIsVisible prop is true", () => {
-    // arrange
-    const ministry = "Worship";
-    const isLabelVisible = true;
-    // act
-    const { getByText } = render(
-      <MinistryIcon ministry={ministry} labelIsVisible={isLabelVisible} />
-    );
-    // assert
-    expect(getByText("Worship")).toBeInTheDocument();
-  });
   it("should not display label if labelIsVisible prop is false", () => {
     // arrange
     const ministry = "Worship";
@@ -25,15 +14,27 @@ describe("MinistryIcon", () => {
     // assert
     expect(getByText("Worship")).not.toBeVisible();
   });
-  it("should be able to display corresponding icon image for worship ministry", () => {
-    // arrange
-    const ministry = "Worship";
-    const isLabelVisible = true;
-    // act
-    const { getByTestId } = render(
-      <MinistryIcon ministry={ministry} labelIsVisible={isLabelVisible} />
-    );
-    // assert
-    expect(getByTestId("WorshipIcon")).toBeInTheDocument();
-  });
+  it.each`
+    ministryName       | expectedIcon           | expectedLabel
+    ${"Announcements"} | ${"AnnouncementsIcon"} | ${"Announcements"}
+    ${"AV"}            | ${"AVIcon"}            | ${"AV"}
+    ${"BibleReading"}  | ${"Bible ReadingIcon"} | ${"Bible Reading"}
+    ${"Communion"}     | ${"CommunionIcon"}     | ${"Communion"}
+    ${"Offering"}      | ${"OfferingIcon"}      | ${"Offering"}
+    ${"Worship"}       | ${"WorshipIcon"}       | ${"Worship"}
+  `(
+    `should show $expectedIcon and $expectedLabel label for the $ministryName ministry`,
+    ({ ministryName, expectedIcon, expectedLabel }) => {
+      //arrange
+      const ministry = ministryName;
+      const isLabelVisible = true;
+      //act
+      const { getByTestId, getByText } = render(
+        <MinistryIcon ministry={ministry} labelIsVisible={isLabelVisible} />
+      );
+      //assert
+      expect(getByTestId(expectedIcon)).toBeInTheDocument();
+      expect(getByText(expectedLabel)).toBeVisible();
+    }
+  );
 });
