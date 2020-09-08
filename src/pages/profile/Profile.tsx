@@ -6,9 +6,9 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import { MinistryIcon } from "../../shared-components/ministryIcon/ministryIcon";
-import "./Home.css";
+import "./Profile.css";
 
-const Home = () => {
+const Profile = () => {
   const { authState, authService } = useOktaAuth();
   const [firstName, setFirstName] = useState<string | null>(null);
   const [lastName, setLastName] = useState<string | null>(null);
@@ -117,10 +117,12 @@ const Home = () => {
             {ministries.map((ministry) => displayVolunteerMinistry(ministry))}
           </Grid>
         ) : (
-          <div>No ministries to display</div>
+          <Grid container justify="center">
+            <div>No ministries to display</div>
+          </Grid>
         )}
       </Grid>
     </div>
   );
 };
-export { Home };
+export { Profile };

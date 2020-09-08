@@ -3,7 +3,7 @@ import { Route, BrowserRouter } from "react-router-dom";
 import { Security, SecureRoute, LoginCallback } from "@okta/okta-react";
 import dotenv from "dotenv";
 import config from "./config";
-import { Home } from "./pages/home/Home";
+// import { Home } from "./pages/profile/Profile";
 import { Profile } from "./pages/profile/Profile";
 import { Header } from "./pages/header/Header";
 
@@ -16,7 +16,7 @@ const HasAccessToRouter = () => {
       pkce={true}
     >
       <Header />
-      <Route path="/" exact={true} component={Home} />
+      <Route path="/" exact={true} component={Profile} />
       <Route path="/implicit/callback" component={LoginCallback} />
       <SecureRoute path="/profile" component={Profile} />
     </Security>
