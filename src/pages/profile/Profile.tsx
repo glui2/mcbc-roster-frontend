@@ -5,7 +5,10 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
-import { MinistryIcon } from "../../shared-components/ministryIcon/ministryIcon";
+import {
+  MinistryIcon,
+  MinistryName,
+} from "../../shared-components/ministryIcon/MinistryIcon";
 import "./Profile.css";
 
 const Profile = () => {
@@ -63,13 +66,13 @@ const Profile = () => {
 
   interface MinistryInterface {
     id: string;
-    name: string;
+    name: MinistryName;
   }
 
   const displayVolunteerMinistry = (ministry: MinistryInterface) => {
     return (
       <Grid item key={ministry.id}>
-        <MinistryIcon ministry={ministry.name}></MinistryIcon>
+        <MinistryIcon ministry={ministry.name} labelIsVisible></MinistryIcon>
       </Grid>
     );
   };

@@ -1,7 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import Grid, { GridSpacing } from "@material-ui/core/Grid";
-import { display } from "@material-ui/system";
+import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import AnnounceIcon from "./AnnouncementsIcon.png";
 import AVIcon from "./AVIcon.png";
@@ -9,11 +8,26 @@ import BibleIcon from "./BibleReadingIcon.png";
 import CommunionIcon from "./CommunionIcon.png";
 import OfferingIcon from "./OfferingIcon.png";
 import WorshipIcon from "./WorshipIcon.png";
-import "./ministryIcon.css";
+import "./MinistryIcon.css";
+import { type } from "os";
 
-const MinistryIcon = (props: any) => {
+interface MinistryIconInterface {
+  labelIsVisible: Boolean;
+  ministry: MinistryName;
+}
+
+// ministry only accepts these strings
+export type MinistryName =
+  | "Announcements"
+  | "AV"
+  | "BibleReading"
+  | "Communion"
+  | "Offering"
+  | "Worship";
+
+const MinistryIcon = (props: MinistryIconInterface) => {
   var iconImage = "";
-  const labelDisplay = props.labelVisibility ? props.labelVisibility : "inline";
+  const labelDisplay = props.labelIsVisible ? "inline" : "none";
   var labelText = "";
 
   switch (props.ministry) {
@@ -53,7 +67,11 @@ const MinistryIcon = (props: any) => {
         spacing={2}
       >
         <Grid item>
-          <img className="iconImage" src={iconImage}></img>
+          <img
+            className="iconImage"
+            src={iconImage}
+            data-testid={`${labelText}Icon`}
+          ></img>
         </Grid>
         <Grid item>
           <Box display={labelDisplay}>
